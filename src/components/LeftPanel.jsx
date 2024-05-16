@@ -1,8 +1,15 @@
-import React from "react";
+import React from 'react';
+import search from "../assets/images/search.svg"
 
 const LeftPanel = ({ tables, onDragStart, tablesInGrid, mockTablesLength }) => {
   return (
     <div className="left-panel">
+            <div class="input-container">
+                <input type="text" placeholder="Filter by Table Name" class="filter-table" />
+                <div class="icon-container">
+                    <img src={search} class="search-icon" />
+                </div>
+            </div>
       <ul className="table-list">
         {tables.map((table) => (
           <li
@@ -22,6 +29,8 @@ const LeftPanel = ({ tables, onDragStart, tablesInGrid, mockTablesLength }) => {
         ))}
       </ul>
     </div>
+
+
   );
 };
 
