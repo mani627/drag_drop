@@ -15,6 +15,7 @@ const RightPanel = ({ tablesInGrid, onDrop, onDragOver, onDragStart, onColumnDra
     }, []);
 
     return (
+        <>
         <div className="right-panel" ref={gridRef}>
             <div
                 className="grid-area"
@@ -27,29 +28,34 @@ const RightPanel = ({ tablesInGrid, onDrop, onDragOver, onDragStart, onColumnDra
                         className="grid-table"
                         style={{ left: table.position.x, top: table.position.y }}
                         draggable
-                        onDragStart={(e) => {onDragStart(e, table.id)}}
+                        onDragStart={(e) => { onDragStart(e, table.id) }}
                     >
                         <div className="table-header">
                             {table.name}
-                            <button onClick={() => onRemoveTable(table.id)}>Remove</button>
+                            <button onClick={() => onRemoveTable(table.id)} className='remove-button'>x</button>
                         </div>
                         <ul className="column-list">
                             {table.columns.map(column => (
-                                <li
+                                <div
                                     key={column.column_id}
                                     className="column-item"
                                     draggable
                                     onDragStart={(e) => onColumnDragStart(e, table.id, column.column_id)}
                                     onDrop={(e) => onColumnDrop(e, table.id, column.column_id)}
                                 >
-                                    {column.name}
-                                </li>
+                                    <div className='table-content'>
+                                        <li className="list-items">{column.name}</li>
+                                        <li className="list-items">{column.column_data_type}</li>
+                                    </div>
+                                </div>
                             ))}
                         </ul>
+                        <div className='footer-content'>Scroll to see more columns</div>
                     </div>
                 ))}
             </div>
         </div>
+        </>
     );
 };
 
