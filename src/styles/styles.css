@@ -1,0 +1,54 @@
+/* Global styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .App {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Table List Styles */
+  .table-list {
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+    border: 1px solid #ddd;
+    width: 200px;
+    background-color: #eee;
+  }
+  
+  .table-item {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #ddd;
+    cursor: grab;
+    opacity: 0.8;
+    transition: opacity 0.2s ease-in-out;
+  
+    &:hover {
+      opacity: 1;
+    }
+  
+    &.dragging {
+      opacity: 0.5;
+    }
+  }
+  
+  /* Grid Styles */
+  .grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #fafafa;
+  }
+  
+  /* Table Styles (assuming Table.js exists) */
+  /* Include styles for your Table component here */
+  
+  /* Optional: Connection Line Styles (assuming ConnectionLine.js exists) */
+  /* Include styles for your ConnectionLine component here */
+  
