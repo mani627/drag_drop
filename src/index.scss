@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left-panel {
+  width: 20%;
+  background: #f4f4f4;
+  padding: 10px;
+}
+
+.right-panel {
+  width: 80%;
+  position: relative;
+  overflow: auto;
+  & .zoom {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+  }
+  & .erase {
+    position: absolute;
+    right: 3%;
+    top: 13%;
+  }
+}
+
+.table-list {
+  list-style: none;
+  padding: 0;
+}
+
+.table-item {
+  padding: 10px;
+  margin: 5px 0;
+  background: #ddd;
+  cursor: pointer;
+  &:hover {
+    background: #ccc;
+  }
+  &.dragging {
+    opacity: 0.5;
+  }
+}
+
+.grid-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+}
+
+.grid-table {
+  position: absolute;
+  background: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  resize: both;
+  overflow: hidden;
+  cursor: move;
+  min-width: 20%;
+  min-height: 30%;
+z-index: 100;
+  .table-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 95px;
+    padding:10px
+  }
+
+  .column-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .column-item {
+    padding: 5px;
+    margin: 2px 0;
+    cursor: pointer;
+    &:hover {
+      background: #ddd;
+    }
+  }
+}
+
+.connection-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.input-container {
+  display: flex;
+  position: relative;
+}
+
+.filter-table {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.icon-container {
+  background-color: #0271a0;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.search-icon {
+  height: 20px;
+  pointer-events: none;
+}
+
+.remove-button {
+  color: #0271a0;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.table-content {
+  display: flex;
+  justify-content: space-between;
+  row-gap: 95px;
+  border-bottom: 1px solid rgba(202, 198, 198, 0.896);
+}
+
+.list-items {
+  padding: 5px;
+}
+
+.table-content:hover {
+  background-color: #abc5d0;
+}
+
+.footer-content {
+  background-color: #ddd;
+  text-align: center;
+  padding: 10px;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}

@@ -34,42 +34,46 @@ function App() {
   const handleDragOver = (e) => {
     e.preventDefault();
   };
-  console.log("1", tablesInGrid);
-  const handleDrop = (e) => {
-    console.log("2", draggedTableId, e.clientY, e.target.offsetLeft);
-    e.preventDefault();
-    const tableInGrid = tablesInGrid.find(
-      (table) => table.id === draggedTableId
-    );
-    if (tableInGrid) {
-    //  alert("Table already exists in the grid.");
 
-      let innerMove = tablesInGrid.map((item, index) => {
-        if (item.id === draggedTableId) {
-          return {
-            ...item,
+  const handleDrop = (e) => {
+    if (e?.target?.tagName === "LI") {
+    } else {
+      e.preventDefault();
+      const tableInGrid = tablesInGrid.find(
+        (table) => table.id === draggedTableId
+      );
+      if (tableInGrid) {
+        //  alert("Table already exists in the grid.");
+
+        let innerMove = tablesInGrid.map((item, index) => {
+          if (item.id === draggedTableId) {
+            return {
+              ...item,
+              position: {
+                x: e.clientX - e.target.offsetLeft - 300,
+                y: e.clientY - e.target.offsetTop,
+              },
+            };
+          } else {
+            return { ...item };
+          }
+        });
+        setTablesInGrid(innerMove);
+      } else {
+        const newTable = mockTables.find(
+          (table) => table.id === draggedTableId
+        );
+        setTablesInGrid([
+          ...tablesInGrid,
+          {
+            ...newTable,
             position: {
-              x: e.clientX - e.target.offsetLeft - 300,
+              x: e.clientX - e.target.offsetLeft - 400,
               y: e.clientY - e.target.offsetTop,
             },
-          };
-        } else {
-          return { ...item };
-        }
-      });
-      setTablesInGrid(innerMove);
-    } else {
-      const newTable = mockTables.find((table) => table.id === draggedTableId);
-      setTablesInGrid([
-        ...tablesInGrid,
-        {
-          ...newTable,
-          position: {
-            x: e.clientX - e.target.offsetLeft - 400,
-            y: e.clientY - e.target.offsetTop,
           },
-        },
-      ]);
+        ]);
+      }
     }
   };
 
@@ -105,7 +109,12 @@ function App() {
 
   return (
     <div className="container">
-      <LeftPanel tables={mockTables} onDragStart={handleDragStart} />
+      <LeftPanel
+        tables={mockTables}
+        onDragStart={handleDragStart}
+        tablesInGrid={tablesInGrid}
+        mockTablesLength={mockTables.length}
+      />
       <RightPanel
         tablesInGrid={tablesInGrid}
         onDragOver={handleDragOver}
@@ -136,10 +145,10 @@ function App() {
             return (
               <line
                 key={index}
-                x1={fromTable.position.x}
-                y1={fromTable.position.y}
-                x2={toTable.position.x}
-                y2={toTable.position.y}
+                x1={fromTable.position.x + 400}
+                y1={fromTable.position.y + 70}
+                x2={toTable.position.x + 300}
+                y2={toTable.position.y + 70}
                 stroke="black"
               />
             );
